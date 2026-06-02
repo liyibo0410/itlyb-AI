@@ -1,0 +1,13 @@
+# PyCharm本地配置（永远不要提交到GitHub）
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Python编译缓存
+__pycache__/
+*.py[cod]
+
+# 系统垃圾文件
+.DS_Store
+Thumbs.db
