@@ -5,16 +5,16 @@
 #
 #
 # d = Dog()
-from pydantic import BaseModel, Field
-
-
+# from pydantic import BaseModel, Field
+#
+#
 # from pydantic import BaseModel
+#
 # class Dog(BaseModel):
 #     name: str
 #     age: int
-#     address: str
 #
-# d = Dog()
+# d = Dog()  # 报错！必须传参数！
 
 # def test(a:int):
 #     print(a)

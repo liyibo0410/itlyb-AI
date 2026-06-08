@@ -1,19 +1,21 @@
 from langchain_core.runnables import RunnableLambda
 
+# 函数1：从URL里拿出域名
 def extract_domain(url):
-    """从URL中提取域名"""
     return url.split('//')[-1].split('/')[0]
 
+# 函数2：给域名加上 http://
 def add_protocol(domain):
-    """添加协议前缀"""
     return f"http://{domain}"
 
-# 包装成Runnable
+# 把普通函数包装成 LangChain 组件
 domain_extractor = RunnableLambda(extract_domain)
 protocol_adder = RunnableLambda(add_protocol)
 
-# 在链中使用
-url_processor = domain_extractor | protocol_adder
-result = url_processor.invoke("https://www.example.com/path")
-# 输出："http://www.example.com"
-print(result)
+# 用 | 串成一条链：函数1 → 函数2
+chain = domain_extractor | protocol_adder
+
+# 调用
+result = chain.invoke("https://www.example.com/path")
+
+print(result)  # 输出：http://www.example.com

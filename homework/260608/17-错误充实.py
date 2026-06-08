@@ -2,6 +2,8 @@ import os
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
+from dotenv import load_dotenv
+load_dotenv()
 
 # 1. 定义提示词和解析器
 prompt = ChatPromptTemplate.from_template("请用一句话夸奖一下：{target}")
@@ -10,8 +12,10 @@ parser = StrOutputParser()
 # 2. 初始化基础大模型
 # 提示：我们可以故意把 timeout 设得很短（比如 0.01 秒），来强行模拟“网络超时错误”
 llm = ChatOpenAI(
-    timeout=10,  # 正常设置为 10 秒；如果想测试重试，可以改成 0.001
-    model="deepseek-ai/DeepSeek-V4-Flash"
+    model="deepseek-ai/DeepSeek-V4-Flash",
+    temperature=0,
+    base_url=os.getenv("SILICON_BASE_URL"),
+    api_key=os.getenv("SILICON_API_KEY")
 )
 
 # 3. 核心：为 LLM 组件外挂“自动重试”安全外挂
