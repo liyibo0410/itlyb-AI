@@ -7,4 +7,10 @@ dependencies = [
     "langchain-openai",
     "zhipuai",
     "python-dotenv>=1.2.2",
+    "markdown>=3.10.2",
+    "unstructured[docx,md]>=0.22.32",
+    "python-magic-bin>=0.4.14",
+    "langchain-community>=0.4.2",
+    "sentence-transformers>=5.5.1",
+    "langchain-huggingface>=1.2.2",
 ]
